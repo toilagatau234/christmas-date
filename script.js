@@ -5,6 +5,7 @@ const FORMSPREE_ENDPOINT = "https://formspree.io/f/mrbnrbev";
 
 // --- LOGIC ---
 let dateData = {
+    email: "",
     time: "",
     food: "",
     dessert: "",
@@ -60,7 +61,7 @@ function checkSelectionAndNext(category, nextSceneNum) {
 
 function displayResult() {
     const resultString =
-        `Email: ${dateData.email}\n` +
+        // `Email: ${dateData.email}\n` +
         `Thời gian: ${dateData.time}\n` +
         `Món chính: ${dateData.food}\n` +
         `Tráng miệng: ${dateData.dessert}\n` +
@@ -96,7 +97,8 @@ function moveButton(btn, e) {
 function sendDataToFormspree() {
     const btn = document.getElementById('btn-send');
     const errorMsg = document.getElementById('error-message');
-    const content = document.getElementById('result-text').value +
+    const content = document.getElementById('email-input').value + 
+        document.getElementById('result-text').value +
         "\n\nLời nhắn từ em:\n" +
         document.getElementById('message-text').value;
 

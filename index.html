@@ -1,141 +1,150 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lời mời hẹn hò</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="container">
-    <div id="scene-1" class="scene active">
-        <h1>Em có muốn đi hẹn hò với anh hônggggg? 💖</h1>
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3R4YnhzM3J4YnhzM3R4YnhzM3R4YnhzM3R4YnhzM3R4YnhzJmZXcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26BRv0ThflsHCqDrG/giphy.gif"
-             alt="Cute romantic animation for dating proposal"
-             class="proposal-gif">
-        <br>
-        <button class="btn" onclick="nextScene(8)">Có chứ!</button>
-        <button class="btn" style="background-color: #888;" 
-                onmouseover="moveButton(this, event)"
-                ontouchstart="moveButton(this, event)" 
-                onclick="alert('Đã bảo là không được bấm mà! 😠')">
-            Không :(
-        </button>
-    </div>
-
-    <div id="scene-8" class = "scene">
-        <h1>bây bì nhập Email để anh có thể ghi lại được những lựa chọn quý giá của em nhé💘 :33</h1>
-        <input type="email" id="email-input" placeholder="Nhập email của em vào đây nè" style="width: 90%; padding: 15px;">
-        <br>
-        <button class="btn" onclick="saveEmailAndNext()">chọn giờ lành thôii</button>
-    </div>
-
-    <div id="scene-2" class="scene">
-        <h1>Mình đi vào lúc nào nhỉ? ⏰</h1>
-        <p>Chọn giờ hoàng đạo nhé :333</p>
-        <input type="datetime-local" id="date-time" style="width: 90%; padding: 15px;">
-        <br>
-        <button class="btn" onclick="saveTimeAndNext()">Tiếp theo</button>
-    </div>
-
-    <div id="scene-3" class="scene">
-        <h1>Em muốn chọn gì cho món chính của tụi mình? 🍕</h1>
-        <div class="options-grid">
-            <div class="card" onclick="selectCard(this, 'food', 'Lẩu')">
-                <img src="https://res.cloudinary.com/dmlv4rbtm/image/upload/v1765534727/buffet-lau-bang-chuyen-Tks-Kiu_sido3d.jpg" alt="Lẩu">
-                <div class="card-title">Lẩu bằng chuyền nóng hổi</div>
-            </div>
-            <div class="card" onclick="selectCard(this, 'food', 'Đồ nướng BBQ')">
-                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80" alt="BBQ-korea">
-                <div class="card-title">Đồ nướng hàn quốc nhó</div>
-            </div>
-            <div class="card" onclick="selectCard(this, 'food', 'Ốc việt nam')">
-                <img src="https://res.cloudinary.com/dmlv4rbtm/image/upload/v1765534997/quan-oc-gan-day-5_xwgokt.jpg" alt="oc-VN">
-                <div class="card-title">Ốc việt nam nè</div>
-            </div>
-            <div class="card" onclick="selectCard(this, 'food', 'Dookki')">
-                <img src="https://res.cloudinary.com/dmlv4rbtm/image/upload/v1765535100/dookki-thu-duc_ousndv.jpg" alt="Dookki">
-                <div class="card-title">Dookki thì xaooooo</div>
-            </div>
-            <div class="card" onclick="selectCard(this, 'food', 'Đồ nướng việt nam')">
-                <img src="https://res.cloudinary.com/dmlv4rbtm/image/upload/v1765535311/image_slsj2o.png" alt="BBQ-VN">
-                <div class="card-title">Đồ nướng việt nam nữa nè</div>
-            </div>
-            <div class="card" onclick="selectCard(this, 'food', 'gà rán')">
-                <img src="https://res.cloudinary.com/dmlv4rbtm/image/upload/v1765535398/jollibee-1_jkswpr.webp" alt="frice-checken">
-                <div class="card-title">gà rán luôn nè</div>
-            </div>
+    <div class="container">
+        <div id="scene-1" class="scene active">
+            <h1>Em có muốn đi hẹn hò với anh hônggggg? 💖</h1>
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3R4YnhzM3J4YnhzM3R4YnhzM3R4YnhzM3R4YnhzM3R4YnhzJmZXcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26BRv0ThflsHCqDrG/giphy.gif"
+                style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
+            <br>
+            <button class="btn" onclick="nextScene(8)">Có chứ!</button>
+            <button class="btn" style="background-color: #888;" onmouseover="moveButton(this)"
+                ontouchstart="moveButton(this)" onclick="alert('Đã bảo là không được bấm mà! 😠')">
+                Không :(
+            </button>
         </div>
-        <button class="btn" onclick="checkSelectionAndNext('food', 4)">Tiếp theo</button>
-    </div>
 
-    <div id="scene-4" class="scene">
-        <h1>Tráng miệng nhé hay nước uống nhé bấy bì? 🧋</h1>
-        <div class="options-grid">
-            <div class="card" onclick="selectCard(this, 'dessert', 'Trà sữa')">
-                <img src="https://res.cloudinary.com/dmlv4rbtm/image/upload/v1765535540/chup-anh-tra-sua-concept-dep-2020_0002_hkxfez.jpg" alt="Trà sữa">
-                <div class="card-title">Trà sữa</div>
-            </div>
-            <div class="card" onclick="selectCard(this, 'dessert', 'Kem')">
-                <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&q=80" alt="Kem">
-                <div class="card-title">Kem mát lạnh</div>
-            </div>
-            <div class="card" onclick="selectCard(this, 'dessert', 'Cafe')">
-                <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=400&q=80" alt="Cafe">
-                <div class="card-title">Cafe Chill</div>
-            </div>
-            <div class="card" onclick="selectCard(this, 'dessert', 'Bắp rang bơ')">
-                <img src="https://images.unsplash.com/photo-1578849278619-e73505e9610f?w=400&q=80" alt="Popcorn">
-                <div class="card-title">Bắp rang bơ</div>
-            </div>
+        <div id="scene-8" class="scene">
+            <h1>bây bì nhập Email để anh có thể ghi lại được những lựa chọn quý giá của em nhé💘 :33</h1>
+            <input type="email" id="email-input" placeholder="Nhập email của em vào đây nè"
+                style="width: 90%; padding: 15px;">
+            <br>
+            <button class="btn" onclick="saveEmailAndNext()">chọn giờ lành thôiii</button>
         </div>
-        <button class="btn" onclick="checkSelectionAndNext('dessert', 5)">Tiếp theo</button>
-    </div>
 
-    <div id="scene-5" class="scene">
-        <h1>Tiết mục tiếp theo em yêu muốn gì nè? 🎡</h1>
-        <div class="options-grid">
-            <div class="card" onclick="selectCard(this, 'activity', 'Dạo phố')">
-                <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=400&q=80" alt="Dạo phố">
-                <div class="card-title">Dạo phố / Công viên</div>
-            </div>
-            <div class="card" onclick="selectCard(this, 'activity', 'Xem phim')">
-                <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&q=80" alt="Xem phim">
-                <div class="card-title">Xem phim rạp</div>
-            </div>
-            <div class="card" onclick="selectCard(this, 'activity', 'Motel deep talk')">
-                <img src="https://res.cloudinary.com/dmlv4rbtm/image/upload/v1765535779/long-den-do-hotel-vip-5-2_lgmm1j.jpg" alt="Motel deep talk">
-                <div class="card-title">Motel deep talk</div>
-            </div>
-            <div class="card" onclick="selectCard(this, 'activity', 'Đấm boxing nhé')">
-                <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=400&q=80" alt="Đấm boxing nhé">
-                <div class="card-title">Đấm boxing nhé!</div>
-            </div>
+        <div id="scene-2" class="scene">
+            <h1>Mình đi vào lúc nào nhỉ? ⏰</h1>
+            <p>Chọn giờ hoàng đạo nhé :333</p>
+            <input type="datetime-local" id="date-time" style="width: 90%; padding: 15px;">
+            <br>
+            <button class="btn" onclick="saveTimeAndNext()">Tiếp theo</button>
         </div>
-        <button class="btn" onclick="checkSelectionAndNext('activity', 6)">Chốt đơn</button>
+
+        <div id="scene-3" class="scene">
+            <h1>Em muốn chọn gì cho món chính của tụi mình? 🍕</h1>
+            <div class="options-grid">
+                <div class="card" onclick="selectCard(this, 'food', 'Lẩu')">
+                    <img src="https://res.cloudinary.com/dmlv4rbtm/image/upload/v1765534727/buffet-lau-bang-chuyen-Tks-Kiu_sido3d.jpg"
+                        alt="Lẩu">
+                    <div class="card-title">Lẩu bằng chuyền nóng hổi</div>
+                </div>
+                <div class="card" onclick="selectCard(this, 'food', 'Đồ nướng BBQ')">
+                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80" alt="BBQ-korea">
+                    <div class="card-title">Đồ nướng hàn quốc nhó</div>
+                </div>
+                <div class="card" onclick="selectCard(this, 'food', 'Ốc việt nam')">
+                    <img src="https://res.cloudinary.com/dmlv4rbtm/image/upload/v1765534997/quan-oc-gan-day-5_xwgokt.jpg"
+                        alt="oc-VN">
+                    <div class="card-title">Ốc việt nam nè</div>
+                </div>
+                <div class="card" onclick="selectCard(this, 'food', 'Dookki')">
+                    <img src="https://res.cloudinary.com/dmlv4rbtm/image/upload/v1765535100/dookki-thu-duc_ousndv.jpg"
+                        alt="Dookki">
+                    <div class="card-title">Dookki thì xaooooo</div>
+                </div>
+                <div class="card" onclick="selectCard(this, 'food', 'Đồ nướng việt nam')">
+                    <img src="https://res.cloudinary.com/dmlv4rbtm/image/upload/v1765535311/image_slsj2o.png"
+                        alt="BBQ-VN">
+                    <div class="card-title">Đồ nướng việt nam nữa nè</div>
+                </div>
+                <div class="card" onclick="selectCard(this, 'food', 'gà rán')">
+                    <img src="https://res.cloudinary.com/dmlv4rbtm/image/upload/v1765535398/jollibee-1_jkswpr.webp"
+                        alt="frice-checken">
+                    <div class="card-title">gà rán luôn nè</div>
+                </div>
+            </div>
+            <button class="btn" onclick="checkSelectionAndNext('food', 4)">Tiếp theo</button>
+        </div>
+
+        <div id="scene-4" class="scene">
+            <h1>Tráng miệng nhé hay nước uống nhé bấy bì? 🧋</h1>
+            <div class="options-grid">
+                <div class="card" onclick="selectCard(this, 'dessert', 'Trà sữa')">
+                    <img src="https://res.cloudinary.com/dmlv4rbtm/image/upload/v1765535540/chup-anh-tra-sua-concept-dep-2020_0002_hkxfez.jpg"
+                        alt="Trà sữa">
+                    <div class="card-title">Trà sữa</div>
+                </div>
+                <div class="card" onclick="selectCard(this, 'dessert', 'Kem')">
+                    <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&q=80" alt="Kem">
+                    <div class="card-title">Kem mát lạnh</div>
+                </div>
+                <div class="card" onclick="selectCard(this, 'dessert', 'Cafe')">
+                    <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=400&q=80" alt="Cafe">
+                    <div class="card-title">Cafe Chill</div>
+                </div>
+                <div class="card" onclick="selectCard(this, 'dessert', 'Bắp rang bơ')">
+                    <img src="https://images.unsplash.com/photo-1578849278619-e73505e9610f?w=400&q=80" alt="Popcorn">
+                    <div class="card-title">Bắp rang bơ</div>
+                </div>
+            </div>
+            <button class="btn" onclick="checkSelectionAndNext('dessert', 5)">Tiếp theo</button>
+        </div>
+
+        <div id="scene-5" class="scene">
+            <h1>Tiết mục tiếp theo em yêu muốn gì nè? 🎡</h1>
+            <div class="options-grid">
+                <div class="card" onclick="selectCard(this, 'activity', 'Dạo phố')">
+                    <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=400&q=80" alt="Dạo phố">
+                    <div class="card-title">Dạo phố / Công viên</div>
+                </div>
+                <div class="card" onclick="selectCard(this, 'activity', 'Xem phim')">
+                    <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&q=80" alt="Xem phim">
+                    <div class="card-title">Xem phim rạp</div>
+                </div>
+                <div class="card" onclick="selectCard(this, 'activity', 'Motel deep talk')">
+                    <img src="https://res.cloudinary.com/dmlv4rbtm/image/upload/v1765535779/long-den-do-hotel-vip-5-2_lgmm1j.jpg"
+                        alt="Motel deep talk">
+                    <div class="card-title">Motel deep talk</div>
+                </div>
+                <div class="card" onclick="selectCard(this, 'activity', 'Đấm boxing nhé')">
+                    <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=400&q=80"
+                        alt="Đấm boxing nhé">
+                    <div class="card-title">Đấm boxing nhé!</div>
+                </div>
+            </div>
+            <button class="btn" onclick="checkSelectionAndNext('activity', 6)">Chốt đơn</button>
+        </div>
+
+        <div id="scene-6" class="scene">
+            <h1>Chốt đơn nhé 💘</h1>
+            <p>Kiểm tra lại và bấmrồi gửi cho anh nha:</p>
+            <textarea id="result-text" rows="6" style="width:90%"></textarea>
+            <br>
+            <p>bấy bì có muốn gửi lời nhắn gì cho anh hônggggg?</p>
+            <textarea id="message-text" rows="6" style="width:90%"></textarea>
+            <br>
+            <button class="btn" id="btn-send" onclick="sendDataToFormspree()">Gửi ngay cho anh</button>
+            <p id="error-message" style="color: red; font-size: 14px; margin-top:10px;"></p>
+        </div>
+
+        <div id="scene-7" class="scene">
+            <div class="success-icon">✅</div>
+            <h1>Đã gửi thành công!</h1>
+            <p>Anh đã nhận được tín hiệu vũ trụ. Hẹn gặp em nhé! ❤️</p>
+        </div>
     </div>
 
-    <div id="scene-6" class="scene">
-        <h1>Chốt đơn nhé 💘</h1>
-        <p>Kiểm tra lại và bấm gửi cho anh nha:</p>
-        <textarea id="result-text" rows="6" style="width:90%"></textarea>
-        <br>
-        <p>bấy bì có muốn gửi lời nhắn gì cho anh hônggggg?</p>
-        <textarea id="message-text" rows="6" style="width:90%"></textarea>
-        <br>
-        <button class="btn" id="btn-send" onclick="sendDataToFormspree()">Gửi ngay cho anh</button>
-        <p id="error-message" style="color: red; font-size: 14px; margin-top:10px;"></p>
-    </div>
-
-    <div id="scene-7" class="scene">
-        <div class="success-icon">✅</div>
-        <h1>Đã gửi thành công!</h1>
-        <p>Anh đã nhận được tín hiệu vũ trụ. Hẹn gặp em nhé! ❤️</p>
-    </div>
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
+
 </html>
