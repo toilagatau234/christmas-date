@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lời mời hẹn hò</title>
+    <style>
+        /* CSS: Giao diện */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fce4ec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            overflow: hidden;
+            /* Để giữ nút chạy trốn trong khung nếu muốn */
+        }
+
+        h1 {
+            color: #d81b60;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #555;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin-top: 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 3px 10px rgba(255, 64, 129, 0.3);
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #c2185b;
+            transform: translateY(-2px);
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            width: 80%;
+            margin-bottom: 10px;
+            font-family: inherit;
+        }
+
+        /* Ẩn hiện các scene */
+        .scene {
+            display: none;
+        }
+
+        .active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        /* Icon thành công */
+        .success-icon {
+            font-size: 50px;
+            display: block;
+            margin-bottom: 20px;
+            animation: popIn 0.5s;
+        }
+
+        /* --- CSS MỚI: GRID VÀ CARD HÌNH ẢNH --- */
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* Chia làm 2 cột */
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            border: 2px solid #eee;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.2s;
+            background: #fff;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Khi được chọn */
+        .card.selected {
+            border-color: #ff4081;
+            background-color: #fff0f5;
+            /* Hồng nhạt */
+            box-shadow: 0 0 10px rgba(255, 64, 129, 0.4);
+        }
+
+        .card img {
+            width: 100%;
+            height: 110px;
+            object-fit: cover;
+            /* Giữ ảnh không bị méo */
+        }
+
+        .card-title {
+            padding: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .success-icon {
+            font-size: 50px;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0);
+            }
+
+            80% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div id="scene-1" class="scene active">
+            <h1>Em có muốn đi hẹn hò với anh hônggggg? 💖</h1>
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3R4YnhzM3J4YnhzM3R4YnhzM3R4YnhzM3R4YnhzM3R4YnhzJmZXcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26BRv0ThflsHCqDrG/giphy.gif"
+                style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
+            <br>
+            <button class="btn" onclick="nextScene(2)">Có chứ!</button>
+            <button class="btn" style="background-color: #888;" onmouseover="dodge(this)"
+                onclick="alert('Không được chọn nút này!')">Không :(</button>
+        </div>
+
+        <div id="scene-2" class="scene">
+            <h1>Mình đi vào lúc nào nhỉ? ⏰</h1>
+            <p>Chọn giờ hoàng đạo nhé :333</p>
+            <input type="datetime-local" id="date-time" style="width: 90%; padding: 15px;">
+            <br>
+            <button class="btn" onclick="saveTimeAndNext()">Tiếp theo</button>
+        </div>
+
+        <div id="scene-3" class="scene">
+            <h1>Em muốn chọn gì cho món chính của tụi mình? 🍕</h1>
+            <div class="options-grid">
+                <div class="card" onclick="selectCard(this, 'food', 'Lẩu')">
+                    <img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?w=400&q=80" alt="Lẩu">
+                    <div class="card-title">Lẩu nóng hổi</div>
+                </div>
+                <div class="card" onclick="selectCard(this, 'food', 'Đồ nướng BBQ')">
+                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80" alt="BBQ">
+                    <div class="card-title">Đồ nướng BBQ</div>
+                </div>
+                <div class="card" onclick="selectCard(this, 'food', 'Món Âu (Steak/Mỳ)')">
+                    <img src="https://images.unsplash.com/photo-1485962398705-ef6a13c41e8f?w=400&q=80" alt="Steak">
+                    <div class="card-title">Bít tết / Mỳ Ý</div>
+                </div>
+                <div class="card" onclick="selectCard(this, 'food', 'Sushi Nhật')">
+                    <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=400&q=80" alt="Sushi">
+                    <div class="card-title">Sushi Nhật Bản</div>
+                </div>
+            </div>
+            <button class="btn" onclick="checkSelectionAndNext('food', 4)">Tiếp theo</button>
+        </div>
+
+        <div id="scene-4" class="scene">
+            <h1>Tráng miệng nhé hay nước uống nhé bấy bì? 🧋</h1>
+            <div class="options-grid">
+                <div class="card" onclick="selectCard(this, 'dessert', 'Trà sữa')">
+                    <img src="https://images.unsplash.com/photo-1558855410-3111564d2553?w=400&q=80" alt="Trà sữa">
+                    <div class="card-title">Trà sữa</div>
+                </div>
+                <div class="card" onclick="selectCard(this, 'dessert', 'Kem')">
+                    <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&q=80" alt="Kem">
+                    <div class="card-title">Kem mát lạnh</div>
+                </div>
+                <div class="card" onclick="selectCard(this, 'dessert', 'Cafe')">
+                    <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=400&q=80" alt="Cafe">
+                    <div class="card-title">Cafe Chill</div>
+                </div>
+                <div class="card" onclick="selectCard(this, 'dessert', 'Bắp rang bơ')">
+                    <img src="https://images.unsplash.com/photo-1578849278619-e73505e9610f?w=400&q=80" alt="Popcorn">
+                    <div class="card-title">Bắp rang bơ</div>
+                </div>
+            </div>
+            <button class="btn" onclick="checkSelectionAndNext('dessert', 5)">Tiếp theo</button>
+        </div>
+
+        <div id="scene-5" class="scene">
+            <h1>Tiết mục tiếp theo em yêu muốn gì nè? 🎡</h1>
+            <div class="options-grid">
+                <div class="card" onclick="selectCard(this, 'activity', 'Dạo phố')">
+                    <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=400&q=80" alt="Dạo phố">
+                    <div class="card-title">Dạo phố / Công viên</div>
+                </div>
+                <div class="card" onclick="selectCard(this, 'activity', 'Xem phim')">
+                    <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&q=80" alt="Xem phim">
+                    <div class="card-title">Xem phim rạp</div>
+                </div>
+                <div class="card" onclick="selectCard(this, 'activity', 'Bowling/Game')">
+                    <img src="https://images.unsplash.com/photo-1533554483738-f933227976cc?w=400&q=80" alt="Bowling">
+                    <div class="card-title">Bowling / Games</div>
+                </div>
+                <div class="card" onclick="selectCard(this, 'activity', 'Netflix & Chill')">
+                    <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=400&q=80" alt="Netflix">
+                    <div class="card-title">Đấm boxing nhé!</div>
+                </div>
+            </div>
+            <button class="btn" onclick="checkSelectionAndNext('activity', 6)">Chốt đơn</button>
+        </div>
+
+        <div id="scene-6" class="scene">
+            <h1>Chốt đơn nhé 💘</h1>
+            <p>Kiểm tra lại và bấmrồi gửi cho anh nha:</p>
+            <textarea id="result-text" rows="6" style="width:90%"></textarea>
+            <br>
+            <p>bấy bì có muốn gửi lời nhắn gì cho anh hônggggg?</p>
+            <textarea id="message-text" rows="6" style="width:90%"></textarea>
+            <br>
+            <button class="btn" id="btn-send" onclick="sendDataToFormspree()">Gửi ngay cho anh</button>
+            <p id="error-message" style="color: red; font-size: 14px; margin-top:10px;"></p>
+        </div>
+
+        <div id="scene-7" class="scene">
+            <div class="success-icon">✅</div>
+            <h1>Đã gửi thành công!</h1>
+            <p>Anh đã nhận được tín hiệu vũ trụ. Hẹn gặp em nhé! ❤️</p>
+        </div>
+    </div>
+
+    <script>
+        // --- CẤU HÌNH ---
+        // 👇👇👇 DÁN LINK FORMSPREE CỦA BẠN VÀO ĐÂY 👇👇👇
+        const FORMSPREE_ENDPOINT = "https://formspree.io/f/mrbnrbev";
+
+
+        // --- LOGIC ---
+        let dateData = {
+            time: "",
+            food: "",
+            dessert: "",
+            activity: ""
+        };
+
+        function showScene(sceneNumber) {
+            document.querySelectorAll('.scene').forEach(scene => {
+                scene.classList.remove('active');
+            });
+            document.getElementById('scene-' + sceneNumber).classList.add('active');
+        }
+
+        function nextScene(number) {
+            showScene(number);
+        }
+
+        function saveTimeAndNext() {
+            const timeInput = document.getElementById('date-time').value;
+            if (!timeInput) { alert("Hãy chọn thời gian nhé!"); return; }
+            dateData.time = timeInput;
+            nextScene(3);
+        }
+
+        // --- HÀM XỬ LÝ CHỌN CARD (MỚI) ---
+        // Hàm này được gọi khi bấm vào 1 thẻ bài (card)
+        function selectCard(cardElement, category, value) {
+            // 1. Tìm thẻ cha chứa các card (options-grid)
+            const parent = cardElement.parentElement;
+
+            // 2. Xóa class 'selected' của tất cả các card khác trong cùng nhóm
+            const siblings = parent.querySelectorAll('.card');
+            siblings.forEach(el => el.classList.remove('selected'));
+
+            // 3. Thêm class 'selected' cho card vừa bấm
+            cardElement.classList.add('selected');
+
+            // 4. Lưu dữ liệu vào biến
+            dateData[category] = value;
+        }
+
+        // Hàm kiểm tra xem đã chọn chưa trước khi qua màn tiếp theo
+        function checkSelectionAndNext(category, nextSceneNum) {
+            if (!dateData[category]) {
+                alert("Em chưa chọn món nào kìa! 🥺");
+                return;
+            }
+
+            // Nếu là bước cuối trước khi hiện kết quả, cập nhật text
+            if (nextSceneNum === 6) {
+                displayResult();
+            }
+
+            nextScene(nextSceneNum);
+        }
+
+        function displayResult() {
+            const resultString = `Thời gian: ${dateData.time}\n` +
+                `Món chính: ${dateData.food}\n` +
+                `Tráng miệng: ${dateData.dessert}\n` +
+                `Hoạt động sau ăn: ${dateData.activity}`;
+            document.getElementById('result-text').value = resultString;
+        }
+
+        function dodge(btn) {
+            // Làm nút chạy lung tung trên màn hình
+            btn.style.position = 'fixed';
+            btn.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+            btn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+        }
+
+        // --- HÀM GỬI DỮ LIỆU ---
+        function sendDataToFormspree() {
+            const btn = document.getElementById('btn-send');
+            const errorMsg = document.getElementById('error-message');
+            const content = document.getElementById('result-text').value +
+                "\n\nLời nhắn từ em:\n" +
+                document.getElementById('message-text').value;
+
+            // Check link
+            if (FORMSPREE_ENDPOINT.includes("DÁN_MÃ")) {
+                alert("Bạn chưa dán link Formspree vào code kìa!");
+                return;
+            }
+
+            btn.innerHTML = "Đang gửi...";
+            btn.disabled = true;
+            errorMsg.innerHTML = "";
+
+            fetch(FORMSPREE_ENDPOINT, {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: content,
+                    _subject: "Kèo hẹn hò chốt đơn! (Có Hình Ảnh)"
+                })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        nextScene(7);
+                    } else {
+                        errorMsg.innerHTML = "Lỗi server, vui lòng thử lại.";
+                        btn.innerHTML = "Thử lại";
+                        btn.disabled = false;
+                    }
+                })
+                .catch(error => {
+                    errorMsg.innerHTML = "Lỗi mạng rồi :(";
+                    btn.innerHTML = "Thử lại";
+                    btn.disabled = false;
+                });
+        }
+    </script>
+
+</body>
+
+</html>
