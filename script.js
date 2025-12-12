@@ -96,7 +96,7 @@ function moveButton(btn, e) {
 function sendDataToFormspree() {
     const btn = document.getElementById('btn-send');
     const errorMsg = document.getElementById('error-message');
-    const content = document.getElementById('email-input').value "\n\n" + 
+    const content = document.getElementById('email-input').value + "\n\n" + 
         document.getElementById('result-text').value +
         "\n\nLời nhắn từ em:\n" +
         document.getElementById('message-text').value;
