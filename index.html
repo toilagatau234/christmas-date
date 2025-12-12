@@ -183,8 +183,10 @@
                 style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
             <br>
             <button class="btn" onclick="nextScene(2)">Có chứ!</button>
-            <button class="btn" style="background-color: #888;" onmouseover="dodge(this)"
-                onclick="alert('Không được chọn nút này!')">Không :(</button>
+            <button class="btn" style="background-color: #888;" onmouseover="moveButton(this)"
+                ontouchstart="moveButton(this)" onclick="alert('Đã bảo là không được bấm mà! 😠')">
+                Không :(
+            </button>
         </div>
 
         <div id="scene-2" class="scene">
@@ -199,20 +201,28 @@
             <h1>Em muốn chọn gì cho món chính của tụi mình? 🍕</h1>
             <div class="options-grid">
                 <div class="card" onclick="selectCard(this, 'food', 'Lẩu')">
-                    <img src="https://images.unsplash.com/photo-1596797038530-2c107229654b?w=400&q=80" alt="Lẩu">
-                    <div class="card-title">Lẩu nóng hổi</div>
+                    <img src="https://res.cloudinary.com/dmlv4rbtm/image/upload/v1765534727/buffet-lau-bang-chuyen-Tks-Kiu_sido3d.jpg" alt="Lẩu">
+                    <div class="card-title">Lẩu bằng chuyền nóng hổi</div>
                 </div>
                 <div class="card" onclick="selectCard(this, 'food', 'Đồ nướng BBQ')">
-                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80" alt="BBQ">
-                    <div class="card-title">Đồ nướng BBQ</div>
+                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&q=80" alt="BBQ-korea">
+                    <div class="card-title">Đồ nướng hàn quốc nhó</div>
                 </div>
-                <div class="card" onclick="selectCard(this, 'food', 'Món Âu (Steak/Mỳ)')">
-                    <img src="https://images.unsplash.com/photo-1485962398705-ef6a13c41e8f?w=400&q=80" alt="Steak">
-                    <div class="card-title">Bít tết / Mỳ Ý</div>
+                <div class="card" onclick="selectCard(this, 'food', 'Ốc việt nam')">
+                    <img src="https://res.cloudinary.com/dmlv4rbtm/image/upload/v1765534997/quan-oc-gan-day-5_xwgokt.jpg" alt="oc-VN">
+                    <div class="card-title">Ốc việt nam nè</div>
                 </div>
-                <div class="card" onclick="selectCard(this, 'food', 'Sushi Nhật')">
-                    <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=400&q=80" alt="Sushi">
-                    <div class="card-title">Sushi Nhật Bản</div>
+                <div class="card" onclick="selectCard(this, 'food', 'Dookki')">
+                    <img src="https://res.cloudinary.com/dmlv4rbtm/image/upload/v1765535100/dookki-thu-duc_ousndv.jpg" alt="Dookki">
+                    <div class="card-title">Dookki thì xaooooo</div>
+                </div>
+                <div class="card" onclick="selectCard(this, 'food', 'Đồ nướng việt nam')">
+                    <img src="https://res.cloudinary.com/dmlv4rbtm/image/upload/v1765535311/image_slsj2o.png" alt="BBQ-VN">
+                    <div class="card-title">Đồ nướng việt nam nữa nè</div>
+                </div>
+                <div class="card" onclick="selectCard(this, 'food', 'gà rán')">
+                    <img src="https://res.cloudinary.com/dmlv4rbtm/image/upload/v1765535398/jollibee-1_jkswpr.webp" alt="frice-checken">
+                    <div class="card-title">gà rán luôn nè</div>
                 </div>
             </div>
             <button class="btn" onclick="checkSelectionAndNext('food', 4)">Tiếp theo</button>
@@ -222,7 +232,7 @@
             <h1>Tráng miệng nhé hay nước uống nhé bấy bì? 🧋</h1>
             <div class="options-grid">
                 <div class="card" onclick="selectCard(this, 'dessert', 'Trà sữa')">
-                    <img src="https://images.unsplash.com/photo-1558855410-3111564d2553?w=400&q=80" alt="Trà sữa">
+                    <img src="https://res.cloudinary.com/dmlv4rbtm/image/upload/v1765535540/chup-anh-tra-sua-concept-dep-2020_0002_hkxfez.jpg" alt="Trà sữa">
                     <div class="card-title">Trà sữa</div>
                 </div>
                 <div class="card" onclick="selectCard(this, 'dessert', 'Kem')">
@@ -252,12 +262,12 @@
                     <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&q=80" alt="Xem phim">
                     <div class="card-title">Xem phim rạp</div>
                 </div>
-                <div class="card" onclick="selectCard(this, 'activity', 'Bowling/Game')">
-                    <img src="https://images.unsplash.com/photo-1533554483738-f933227976cc?w=400&q=80" alt="Bowling">
-                    <div class="card-title">Bowling / Games</div>
+                <div class="card" onclick="selectCard(this, 'activity', 'Motel deep talk')">
+                    <img src="https://res.cloudinary.com/dmlv4rbtm/image/upload/v1765535779/long-den-do-hotel-vip-5-2_lgmm1j.jpg" alt="Motel deep talk">
+                    <div class="card-title">Motel deep talk</div>
                 </div>
-                <div class="card" onclick="selectCard(this, 'activity', 'Netflix & Chill')">
-                    <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=400&q=80" alt="Netflix">
+                <div class="card" onclick="selectCard(this, 'activity', 'Đấm boxing nhé')">
+                    <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=400&q=80" alt="Đấm boxing nhé">
                     <div class="card-title">Đấm boxing nhé!</div>
                 </div>
             </div>
@@ -355,11 +365,31 @@
             document.getElementById('result-text').value = resultString;
         }
 
-        function dodge(btn) {
-            // Làm nút chạy lung tung trên màn hình
-            btn.style.position = 'fixed';
-            btn.style.top = Math.random() * (window.innerHeight - 50) + 'px';
-            btn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+        function moveButton(btn) {
+            // Logic riêng cho điện thoại:
+            // Kiểm tra nếu sự kiện là 'touchstart' (chạm màn hình)
+            if (event && event.type === 'touchstart') {
+                event.preventDefault(); // Dòng QUAN TRỌNG NHẤT: Chặn không cho nó tính là 1 cú click
+            }
+
+            // Lấy kích thước màn hình
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+
+            // Lấy kích thước nút để trừ hao (tránh nút bay ra mép màn hình)
+            const btnWidth = btn.offsetWidth;
+            const btnHeight = btn.offsetHeight;
+
+            // Tính toán vị trí ngẫu nhiên
+            // Math.random() tạo số từ 0 đến 1. Nhân với kích thước màn hình để ra tọa độ.
+            // Trừ đi 50px để chắc chắn nút không bị che mất.
+            const newLeft = Math.random() * (width - btnWidth - 20);
+            const newTop = Math.random() * (height - btnHeight - 20);
+
+            // Gán vị trí mới
+            btn.style.position = 'fixed'; // 'fixed' giúp nút bay tự do đè lên mọi thứ
+            btn.style.left = newLeft + 'px';
+            btn.style.top = newTop + 'px';
         }
 
         // --- HÀM GỬI DỮ LIỆU ---
