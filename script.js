@@ -47,6 +47,17 @@ function selectCard(cardElement, category, value) {
 }
 
 function checkSelectionAndNext(category, nextSceneNum) {
+    // Kiểm tra xem người dùng có nhập text tùy chỉnh không
+    let customInputId = "";
+    if (category === 'food') customInputId = "newfood-text";
+    else if (category === 'dessert') customInputId = "newdessert-text";
+    else if (category === 'activity') customInputId = "newactivity-text";
+
+    const customInput = document.getElementById(customInputId);
+    if (customInput && customInput.value.trim() !== "") {
+        dateData[category] = customInput.value.trim();
+    }
+
     if (!dateData[category]) {
         alert("Em chưa chọn món nào kìa! 🥺");
         return;
@@ -74,7 +85,7 @@ function moveButton(btn, e) {
     // Kiểm tra nếu sự kiện là 'touchstart' (chạm màn hình điện thoại)
     // Hoặc kiểm tra window.event nếu e không được truyền (fallback)
     const currentEvent = e || window.event;
-    
+
     if (currentEvent && currentEvent.type === 'touchstart') {
         currentEvent.preventDefault(); // Chặn hành động click/tap mặc định
     }
@@ -87,7 +98,7 @@ function moveButton(btn, e) {
     const newLeft = Math.random() * (width - btnWidth - 20);
     const newTop = Math.random() * (height - btnHeight - 20);
 
-    btn.style.position = 'fixed'; 
+    btn.style.position = 'fixed';
     btn.style.left = newLeft + 'px';
     btn.style.top = newTop + 'px';
 }
@@ -96,11 +107,6 @@ function moveButton(btn, e) {
 function sendDataToFormspree() {
     const btn = document.getElementById('btn-send');
     const errorMsg = document.getElementById('error-message');
-    const content = document.getElementById('email-input').value + "\n\n" + 
-        document.getElementById('result-text').value +
-        "\n\nLời nhắn từ em:\n" +
-        document.getElementById('message-text').value;
-
     if (FORMSPREE_ENDPOINT.includes("DÁN_MÃ")) {
         alert("Bạn chưa dán link Formspree vào code kìa!");
         return;
@@ -117,7 +123,12 @@ function sendDataToFormspree() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            message: content,
+            email: dateData.email,
+            time: dateData.time,
+            food: dateData.food,
+            dessert: dateData.dessert,
+            activity: dateData.activity,
+            message: document.getElementById('message-text').value,
             _subject: "Kèo hẹn hò chốt đơn!"
         })
     })
